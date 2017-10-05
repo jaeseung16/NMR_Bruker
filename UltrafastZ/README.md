@@ -1,18 +1,59 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1561
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww16200\viewh13200\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+# UFZref
 
-\f0\fs36 \cf0 UFZref\
-\
-Reference scan for Ultrafast Z-Spectroscopy\
-\
-d1 - relaxation delay\
-; p1 - excitation pulse, usually 90-deg\
-\
-; 1D imaging with spin echo\
-; cnst23 = 5 for CEST, 10 for MT\
-\
-; p2 - refocusing 180-deg pulse}
+## Reference scan for Ultrafast Z-Spectroscopy
+
+### Parameters
+* d1: relaxation delay
+
+**1D imaging with spin echo**
+* p1: excitation pulse, usually 90°
+* cnst23: I used 5 for CEST, 10 for MT
+* d27: half of echo time 10 ~ 20 ms
+* p2: refocusing 180° pulse}
+
+**Acquisition**
+* d15: delay for safety, try 0 us
+* aq: about 2 × d27, 20 ~ 40 ms
+
+**Acqusition**
+* td: 2048 or 4096
+* sw: ~100 kHz
+* AQ_mod: DQD
+* DSPFIRM: medium
+* DE: 4.5 μs or less
+
+**Processing**
+* si: td/2
+
+# UFZsat
+
+## Scan with pre-saturation for Ultrafast Z-Spectroscopy
+
+### Parameters
+* d1: relaxation delay
+
+**Saturation**
+* p18: saturation pulse, usually 1 sec
+* sp6: shape parameters for the saturation pulse, usually rectangular pulse & γB<sub>1</sub>/2π = 100 Hz
+* cnst24: strength of a crusher gradient
+* d12: duration of a crusher gradient
+
+**1D imaging with spin echo**
+* p1: excitation pulse, usually 90°
+* cnst23: I used 5 for CEST, 10 for MT
+* d27: half of echo time 10 ~ 20 ms
+* p2: refocusing 180° pulse}
+
+**Acquisition**
+* d15: delay for safety, try 0 us
+* aq: about 2 × d27, 20 ~ 40 ms
+
+**Acqusition**
+* td: 2048 or 4096
+* sw: ~100 kHz
+* AQ_mod: DQD
+* DSPFIRM: medium
+* DE: 4.5 μs or less
+
+**Processing**
+* si: td/2
