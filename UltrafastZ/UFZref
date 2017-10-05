@@ -1,0 +1,55 @@
+; The reference scan for Ultrafast Z-Spectroscopy
+;
+; Reference
+; Xiang Xu, Jae-Seung Lee, Alexej Jerschow
+; Ultrafast scanning of exchangeable sites by NMR spectroscopy
+; Angew. Chem. Int. Ed. Engl. 2013;52:8281–4.
+;
+; Prepared by Jae-Seung Lee on 10/5/2017
+
+
+#include<Avance.incl>
+#include<Grad.incl>
+#include<De.incl>
+
+"d11=30m"
+
+1  ze
+2  d1
+   p1 ph1
+   5u grad {(0)|(0)|(cnst23)}
+   d27
+   5u grad {(0)|(0)|(0)}
+   p2 ph2
+   5u grad {(0)|(0)|(cnst23)}
+   d15
+   ACQ_START(ph30,ph31)
+   aq DWELL_GEN:f1
+   5u grad{ (0) | (0) | (0) }
+   rcyc=2
+   400m wr #0
+   d11
+exit
+
+
+ph1 = 0 0 2 2 1 1 3 3
+ph2 = 1 3 3 1 0 2 2 0 
+ph29= 0 0
+ph30= 0 0 2 2 1 1 3 3
+ph31= 0
+
+;d1: rcycl/rlxtn delay
+;d2: 2s (slctv soft puls)
+
+;pl1:f1 channel - power level for pulse (default)
+;pl9:(approx54dB)f1chnnl preSat pwrLvl
+;p1 : f1 channel -  90 degree high power pulse
+;d1 : relaxation delay; 1-5 * T1
+;d12: delay for power switching [20 usec]
+;NS : 1 * n, total number of scans: NS * TD0
+
+;l0 :=lenOfFrqncArr in frqList
+;cnst21: on resonance frq.
+
+
+;$Id: zgpr,v 1.7 2002/06/12 09:05:24 ber Exp $
