@@ -1,0 +1,46 @@
+;TdADRFARRF
+;Measuring T1d by a pair of ADRF and ARRF
+;
+;T1d : Relaxation time for a dipolar order
+;ADRF : Adiabatic Demagnetization in the Rotating Frame
+;ARRF : Adiabatic Remagnetization in the Rotating Frame
+;T1 measurement using inversion recovery
+;
+;Updated by Jae-Seung Lee on 10/6/2017
+
+#include <Avance.incl>
+
+
+"d11=30m"
+
+1 ze
+2 d1
+  p1:f1 ph3
+  p11:sp1:f1 ph1
+  d4
+  vd
+  p12:sp2:f1 ph2
+  d4
+  go=2 ph31
+  d11 wr #0 if #0 ivd
+  lo to 1 times td1
+exit
+
+
+ph1=0 1 2 3
+ph2=0 1 2 3
+ph3=1 2 3 0
+ph31=0 1 2 3
+
+;d1 : relaxation delay
+;p1 : f1 channel - 90 degree high power pulse
+;pl1 : f1 channel - power level for pulse (default)
+;p11 : f1 channel - ADRF
+;sp1 : shape for p11 = linear decreasing ramp, power level sp1 = pl1
+;p12: f1 channel - ARRF
+;sp2 : shape for p12 = linear increasing ramp, power level sp2 = pl1
+;d4 : delay required after a shaped pulse, 2-3 us
+
+;d11: delay for disk I/O                             [30 msec]
+;vd : variable delay, taken from vd-list
+;ns : 4 * n
