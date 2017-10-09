@@ -1,0 +1,41 @@
+; Jeener-Broekaert Sequence
+;
+; Jeener J, Broekaert P. 
+; Nuclear Magnetic Resonance in Solids: Thermodynamic Effects of a Pair of rf Pulses.
+; Phys Rev. 1967;157:232–40. 
+;
+; By Jae-Seung Lee
+; 10/9/2017
+
+#include <Avance.incl>
+
+"p3=p1*0.5"
+"d11=30m"
+
+1 ze
+2 d1
+  p1 ph1
+  d2
+  p3 ph2
+  vd
+  p3 ph3
+  go=2 ph31
+  d11 wr #0 if #0 ivd
+  lo to 1 times td1
+exit
+
+ph1=0 1 2 3 2 3 0 1
+ph2=1 2 3 0 1 2 3 0
+ph3=0 0 0 0 2 2 2 2
+ph31=0 0 0 0 0 0 0 0
+
+
+;pl1 : f1 channel - power level for pulse (default)
+;p1 : f1 channel - 90 degree high power pulse
+;p3 : f1 channel - 45 degree high power pulse
+;d1 : relaxation delay; 1-5 * T1
+;d11: delay for disk I/O                             [30 msec]
+;vd : variable delay, taken from vd-list
+;NS: 8 * n
+;td1: number of experiments = number of delays in vd-list
+;FnMODE: undefined
